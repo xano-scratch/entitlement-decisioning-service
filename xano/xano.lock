@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "objects": {
+    "app:auth": {
+      "guid": "4fe67f5a2d319eaaca7996700f27edd8",
+      "canonical": "eds_auth",
+      "canonical_source": "code"
+    },
+    "app:catalog": {
+      "guid": "9c633fe4507b60d8a38911049a8fc430",
+      "canonical": "eds_catalog",
+      "canonical_source": "code"
+    },
+    "app:decision": {
+      "guid": "afecbcb7afc43c6c5e83fc5562524741",
+      "canonical": "eds_decision",
+      "canonical_source": "code"
+    },
+    "app:ops": {
+      "guid": "e3319f6eef10d315d17fdbf36db140d1",
+      "canonical": "eds_ops",
+      "canonical_source": "code"
+    },
+    "app:policies": {
+      "guid": "f6e26e303f6fa5fcf5f6f48dc83ed3bb",
+      "canonical": "eds_policies",
+      "canonical_source": "code"
+    },
+    "dbo:access_decisions": {
+      "guid": "017c2d5ab2f2329a20a513fa21752171"
+    },
+    "dbo:entitlement_policies": {
+      "guid": "b2e0fa00237363e78572ec198d8ff501"
+    },
+    "dbo:grants": {
+      "guid": "797868334acac4cc3d2880f717846365"
+    },
+    "dbo:principals": {
+      "guid": "50ddaa1045ddfd36dd99cb420fa5a828"
+    },
+    "dbo:resources": {
+      "guid": "562d2e4436fb4a0ed6efba942978f884"
+    },
+    "dbo:service_accounts": {
+      "guid": "4e2a0990f51fde568582c37aa5940542"
+    },
+    "function:tier_rank": {
+      "guid": "766a174ddca2a7c749327b60e2fceb18"
+    },
+    "query:auth|POST|login": {
+      "guid": "d39d74f907baeb484e9c93358362998a"
+    },
+    "query:catalog|GET|principals": {
+      "guid": "df56a2a4cd2406befa09d7a976dc1bf0"
+    },
+    "query:catalog|GET|resources": {
+      "guid": "23c52ceb9bf186cde3ce7da453346642"
+    },
+    "query:decision|GET|decisions": {
+      "guid": "5a9afb2843fcf5b5da8f6f873ccb56d9"
+    },
+    "query:decision|GET|decisions/{id}": {
+      "guid": "7ca87a59cc063116e934199827d38d42"
+    },
+    "query:decision|POST|check-access": {
+      "guid": "14fc26ea64e338b2b8e1fe6e9d73f91d"
+    },
+    "query:ops|POST|seed": {
+      "guid": "962347eed8bcbd61b7ab2b691d6684a8"
+    },
+    "query:policies|GET|list": {
+      "guid": "708090b2bd53ea68001dbc93fad79bd3"
+    },
+    "query:policies|PATCH|activate/{id}": {
+      "guid": "f541e4cfbe9888b796a34bcfaa3a1310"
+    },
+    "query:policies|POST|version": {
+      "guid": "3b2b4763809cb0b461823fd46acac2b3"
+    }
+  }
+}

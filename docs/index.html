@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entitlement Decisioning Service — a Xano proof artifact</title>
+    <meta
+      name="description"
+      content="One governed API that decides whether a role can take an action on an account, and names the exact policy version that decided it. A Xano Business Logic Centralization proof artifact for wealth management."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --panel: #141414;
+        --panel-2: #1b1b1b;
+        --border: #272727;
+        --text: #ededed;
+        --muted: #9a9a9a;
+        --primary: #fafafa;
+        --accent: #7dd3fc;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+      code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+      header.site { border-bottom: 1px solid var(--border); }
+      header.site .wrap { display: flex; align-items: center; gap: 10px; padding: 16px 24px; }
+      .mark {
+        width: 30px; height: 30px; border-radius: 8px;
+        background: var(--primary); color: #0a0a0a;
+        display: grid; place-items: center; font-weight: 700;
+      }
+      header.site strong { font-size: 15px; }
+
+      .hero { padding: 64px 0 40px; }
+      .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+      .badge {
+        font-size: 12px; padding: 4px 10px; border-radius: 999px;
+        border: 1px solid var(--border); color: var(--muted); background: var(--panel);
+      }
+      .badge.play { color: #0a0a0a; background: var(--accent); border-color: transparent; font-weight: 600; }
+      h1 { font-size: 42px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px; }
+      .tagline { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 0 20px; }
+      .meta { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+      .meta b { color: var(--text); font-weight: 600; }
+
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 10px 18px; border-radius: 9px; font-size: 15px; font-weight: 600;
+        text-decoration: none; border: 1px solid transparent; transition: opacity .15s, background .15s;
+      }
+      .btn.primary { background: var(--primary); color: #0a0a0a; }
+      .btn.primary:hover { opacity: .9; }
+      .btn.ghost { background: transparent; border-color: var(--border); color: var(--text); }
+      .btn.ghost:hover { background: var(--panel); }
+
+      .shot { margin: 44px 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+      .shot img { display: block; width: 100%; height: auto; }
+
+      section { padding: 32px 0; border-top: 1px solid var(--border); }
+      h2 { font-size: 24px; letter-spacing: -0.01em; margin: 0 0 18px; }
+      .cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+      .card h3 { margin: 0 0 6px; font-size: 15px; }
+      .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; }
+      td .mono { color: var(--accent); }
+      .verb { color: var(--muted); font-weight: 600; }
+
+      ul.screens { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+      ul.screens li { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+      ul.screens li b { color: var(--text); }
+
+      pre {
+        background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px;
+        padding: 16px; overflow-x: auto; font-size: 13px; color: #d7d7d7;
+      }
+      .note { color: var(--muted); font-size: 13px; }
+      footer { border-top: 1px solid var(--border); padding: 28px 0 56px; color: var(--muted); font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <div class="mark">E</div>
+        <strong>Entitlement Decisioning Service</strong>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="hero">
+        <div class="badges">
+          <span class="badge play">Play 1 · Business Logic Centralization</span>
+          <span class="badge">Wealth management</span>
+          <span class="badge">Native @xanots/sdk RBAC</span>
+        </div>
+        <h1>Access rules as versioned data, in one governed API.</h1>
+        <p class="tagline">
+          Internal apps call one endpoint to ask "can this role take this action on this account?" It
+          answers allow or deny, names the exact policy version that decided it, and writes an audit row.
+        </p>
+        <p class="meta"><b>6 tables</b> · <b>10 APIs</b> · <b>1 function</b> · API-layer RBAC, no row-level security</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/xano-scratch/entitlement-decisioning-service">View on GitHub</a>
+          <a class="btn ghost" href="#use">Use this template</a>
+        </div>
+      </div>
+
+      <div class="shot">
+        <img
+          src="screenshot.png"
+          alt="The Access Console showing a governed DENY with the tier-ceiling rule and the deciding policy version"
+        />
+      </div>
+
+      <section>
+        <h2>What it demonstrates</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Rules as versioned data</h3>
+            <p>Each policy row is one version of one rule. Exactly one version per key is active, and a human can read and audit the active set.</p>
+          </div>
+          <div class="card">
+            <h3>A real decision engine</h3>
+            <p>The waterfall checks a baseline grant, an explicit deny, a tier ceiling, then segregation of duties, and returns the rule that fired.</p>
+          </div>
+          <div class="card">
+            <h3>Watch a decision flip</h3>
+            <p>Activate a new policy version and the next decision changes. The audit trail keeps the version that decided every past request.</p>
+          </div>
+          <div class="card">
+            <h3>API-layer RBAC</h3>
+            <p>A policy_admin curates rules, a service_caller only calls the engine, a viewer is read only. Enforced with per-endpoint preconditions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>API surface</h2>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Path</th><th>What it enforces</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="verb">POST</td><td class="mono">/api:eds_auth/login</td><td>Verify a service account and mint a bearer token.</td></tr>
+            <tr><td class="verb">POST</td><td class="mono">/api:eds_decision/check-access</td><td>The rule engine. Guarded to service_caller or policy_admin. Writes an audit row.</td></tr>
+            <tr><td class="verb">GET</td><td class="mono">/api:eds_decision/decisions</td><td>The audit trail, newest first.</td></tr>
+            <tr><td class="verb">GET</td><td class="mono">/api:eds_decision/decisions/{id}</td><td>One decision joined to the policy version that decided it.</td></tr>
+            <tr><td class="verb">GET</td><td class="mono">/api:eds_policies/list</td><td>Every policy version, grouped by key.</td></tr>
+            <tr><td class="verb">POST</td><td class="mono">/api:eds_policies/version</td><td>Create a new draft version. policy_admin only.</td></tr>
+            <tr><td class="verb">PATCH</td><td class="mono">/api:eds_policies/activate/{id}</td><td>Activate a version and retire the prior one. policy_admin only.</td></tr>
+            <tr><td class="verb">POST</td><td class="mono">/api:eds_ops/seed</td><td>Reset the demo data to a known baseline.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Frontend screens</h2>
+        <ul class="screens">
+          <li><b>Login.</b> Sign in as one of three roles to see how RBAC gates the API.</li>
+          <li><b>Access Console.</b> Pick a principal, resource, and action, and read the decision, the rule that fired, and the deciding policy version.</li>
+          <li><b>Policies.</b> Browse versions grouped by key. A policy_admin creates and activates new versions.</li>
+          <li><b>Audit Trail.</b> Every decision, newest first, each linked to the policy version that decided it.</li>
+        </ul>
+      </section>
+
+      <section id="use">
+        <h2>Use this template</h2>
+        <p class="note">Paste this into your coding agent (Claude Code, Cursor, or similar):</p>
+        <pre>Clone https://github.com/xano-scratch/entitlement-decisioning-service and set it up as my
+own Xano app. Run: npm install, then npx xanots login, then npm run xano:deploy. After it
+deploys, POST to /api:eds_ops/seed on the printed backend URL to load the demo data, then
+open the frontend URL. Read xano/index.ts and node_modules/@xanots/sdk/llms.txt first so
+you author against the real SDK, and keep frontend/src/lib/api.ts as the single contract.</pre>
+        <p class="note">Or run it yourself:</p>
+        <pre>git clone https://github.com/xano-scratch/entitlement-decisioning-service.git
+cd entitlement-decisioning-service
+npm install
+npx xanots login
+npm run xano:deploy</pre>
+      </section>
+
+      <footer>
+        A Xano scratch proof artifact, not a production customer reference. Live demo links are ephemeral
+        and expire. Redeploy from the repo with <code>npm run xano:deploy</code> for fresh links.
+      </footer>
+    </div>
+  </body>
+</html>
